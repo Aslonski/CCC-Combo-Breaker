@@ -1,0 +1,47 @@
+.container-left {
+  position: relative;
+  float: left;
+  /*top: 100px;*/
+}
+
+.container-right {
+  position: relative;
+  float: right;
+  top: 100px;
+}
+
+#stage-left {
+	background-color: black;
+	height: 500px;
+	width: 500px;
+	text-align: center;
+}
+
+#stage-right {
+  background-color: black;
+  height: 500px;
+  width: 500px;
+  text-align: center;
+}
+
+#controls-left {
+	padding-left: 105px;
+
+}
+
+#controls-right {
+  padding-left: 105px;
+
+}
+/*#left {
+
+}
+#up {
+
+}
+#down {
+
+}
+#right {
+
+}*/
