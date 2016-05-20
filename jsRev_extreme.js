@@ -10,38 +10,35 @@ function Arrow(direction) {
 	// CSS spacings for the arrows //
 	var xPos = null;
 	switch(direction) {
-		case "left_mini_bob_ross" : xPos = "115px";
+		case "left" : xPos = "115px";
 		break;
-		case "up_pog_champ" : xPos = "182";
+		case "up" : xPos = "182";
 		break;
-		case "down_resident_sleeper" : xPos = "252px";
+		case "down" : xPos = "252px";
 		break;
-		case "right_bible_thump" : xPos = "322px";
+		case "right" : xPos = "322px";
 		break;
 	}
 	this.direction = direction;
-	this.image = $("<img src='./arrows/" + direction + ".0'/>");
+	this.image = $("<img src='./arrows/" + direction + ".gif'/>");
 	this.image.css({
 		position: "absolute",
-		top: "500px",
+		top: "0px",
 		left: xPos
 	});
-	$('#stage-left').append(this.image);
-	// $('#stage-right').append(this.image);
+	$('.stage-left').append(this.image);
 }// ends CLASS Arrow
 // To enable animating the arrows
 Arrow.prototype.step = function() {
 	// Controls the speed of the arrows
-	arrowSpeed = (Math.floor(Math.random() * 9) + 1);
-	// this.image.css("top", "-=" + arrowSpeed + "px");
-	this.image.css("top", "-=4px")
+	this.image.css("top", "+=4px");
 };
 // Deletes arrows when they get to bottom of page
 Arrow.prototype.destroy = function() {
 	// removes the image of the DOM
 	this.image.remove();
 	// Removes the note/arrow from memory/array
-	notes.splice(0,1);//shift()?
+	notes.splice(0,1);
 };
 // Explodes arrow when hit
 Arrow.prototype.explode = function() {
@@ -52,71 +49,40 @@ var randNum = 0;
 // Frame increasing
 var frame = 0;
 // Determines the speed of notes
-var arrowSpawnRate = function() {
-	return (Math.floor(Math.random() * 80) + 10);
-}
+var arrowSpawnRate = 40;
 // Random generator for arrows
-function kappaGen() {
+function randomGen() {
 	// Randomizes between 1 and 4
-	randNum = Math.floor(Math.random() * 10) + 1;
+	randNum = Math.floor(Math.random() * 4) + 1;
 	if (randNum === 1) {
-		notes.push(new Arrow("left_mini_bob_ross"));
+		notes.push(new Arrow("left"));
 	}
 	if (randNum === 2) {
-		notes.push(new Arrow("right_bible_thump"));
+		notes.push(new Arrow("right"));
 	}
 	if (randNum === 3) {
-		notes.push(new Arrow("up_pog_champ"));
+		notes.push(new Arrow("up"));
 	}
 	if (randNum === 4) {
-		notes.push(new Arrow("down_resident_sleeper"));
+		notes.push(new Arrow("down"));
 	}
-	if (randNum === 5) {
-		notes.push(new Arrow("left_mini_bob_ross"));
-		notes.push(new Arrow("up_pog_champ"));
-	}
-	if (randNum === 6) {
-		notes.push(new Arrow("left_mini_bob_ross"));
-		notes.push(new Arrow("down_resident_sleeper"));
-	}
-	if (randNum === 7) {
-		notes.push(new Arrow("left_mini_bob_ross"));
-		notes.push(new Arrow("right_bible_thump"));
-	}
-	if (randNum === 8) {
-		notes.push(new Arrow("up_pog_champ"));
-		notes.push(new Arrow("down_resident_sleeper"));
-	}
-	if (randNum === 9) {
-		notes.push(new Arrow("up_pog_champ"));
-		notes.push(new Arrow("right_bible_thump"));
-	}
-	if (randNum === 10) {
-		notes.push(new Arrow("down_resident_sleeper"));
-		notes.push(new Arrow("right_bible_thump"));
-	}
-}// ends kappaGen()
-// kappaRender function //
-function kappaRender() {
-	if (frame++ % arrowSpawnRate() === 0) {
-		kappaGen();
+}// ends randomGen()
+// Render function //
+function render() {
+	if (frame++ % arrowSpawnRate === 0) {
+		randomGen();
 	}
 	// Animate arrows showering down //
 	for (var i = notes.length - 1; i >= 0; i--) {
 		notes[i].step();
 		// Check for cleanup
-		if (notes[i].image.position().top < -200) {
+		if (notes[i].image.position().top > 615) {
 			notes[i].destroy();
 		}
 	}
-}// ends kappaRender()
+}// ends render()
 // jQuery to animate arrows //
 $(document).ready(function () {
-	$('#kappa').on('submit', function engageKappaMode(event) {
-		event.preventDefault();
-
-
-	})
 	// shim layer with setTimeout fallback
 	window.requestAnimFrame = (function() {
 		return window.requestAnimationFrame ||
@@ -126,13 +92,13 @@ $(document).ready(function () {
 			window.setTimeout(callback, 40 / 75);
 		};
 	})();
-	/*	place the rAF *before* the kappaRender()
+	/*	place the rAF *before* the render()
 		to assure as close to 60fps with the
 		setTimeout fallback.					*/
 	// Infinte loop for game play
 	(function animloop() {
 		requestAnimFrame(animloop);
-		kappaRender();
+		render();
 	})();// ends (function animloop() )
 });// ends $(doc).ready
 // Listening for when the key is pressed

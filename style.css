@@ -1,38 +1,71 @@
-.container-left {
-  position: relative;
-  float: left;
-  /*top: 100px;*/
-}
-
-.container-right {
-  position: relative;
-  float: right;
-  top: 100px;
-}
-
-#stage-left {
-	background-color: black;
-	height: 500px;
-	width: 500px;
-	text-align: center;
-}
-
-#stage-right {
+.stage {
   background-color: black;
   height: 500px;
   width: 500px;
   text-align: center;
+  position: relative;
+  top: 100px;
+  opacity: 0.8;
 }
-
-#controls-left {
-	padding-left: 105px;
-
+.stage-right {
+  background-color: black;
+  height: 500px;
+  width: 500px;
+  text-align: center;
+  position: relative;
+  top: 100px;
+  opacity: 0.8;
 }
-
-#controls-right {
+#controls {
   padding-left: 105px;
-
+  position: relative;
+  top: 100px;
 }
+.scoreboard {
+  position: relative;
+  right: 500px;
+}
+
+.right-container {
+  float:right;
+  position: fixed;
+  top: -60px;
+  right: 200px;
+  margin-top: 154px;
+}
+.left-container {
+  float:left;
+  margin-left: 175px;
+  margin-top: 80px
+}
+
+#score {
+  color: white;
+}
+
+#streak {
+  color: white;
+}
+
+p {
+  color: white;
+  font-size: 25px;
+}
+
+body {
+  background-color: rgb(42,181,17);
+  background: url("http://img05.deviantart.net/b8e7/i/2005/319/5/6/ddr_vector_logo___background_by_calicostonewolf.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+footer {
+  margin-top: 14%;
+  margin-left: 32%;
+}
+
+
+
 /*#left {
 
 }
