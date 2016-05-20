@@ -1,17 +1,50 @@
 <html>
 <head>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+	<script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 	<script src="jsRev.js" type="text/javascript"></script>
+  <script src="public/js/SCplayer.js"> </script>
+  <script src="public/js/application.js"></script>
 	<link rel="stylesheet" type="text/css" href="style.css">
-	<title>JS Revolution</title>
+	<title>CCC-Combo Breaker</title>
 </head>
 <body>
-		<div class="stage"></div> <!-- ENDS .STAGE -->
+	<div class="left-container">
 		<div id="controls">
 			<img id="left" src="./arrows/staticLeft.png">
 			<img id="up" src="./arrows/staticUp.png">
 			<img id="down" src="./arrows/staticDown.png">
 			<img id="right" src="./arrows/staticRight.png">
 		</div> <!-- ENDS #CONTROLS -->
+		<div class="stage"></div> <!-- ENDS .STAGE -->
+	</div>
+
+	<!-- <div class="scoreboard"> -->
+		<p>Score:  <span id="score">0</span></p>
+		<p>Combo:  <span id="streak">0</span></p>
+	<!-- </div> -->
+
+	<div class="right-container">
+		<div id="controls">
+			<img id="left0" src="./arrows/left_mini_bob_ross.gif">
+			<img id="up0" src="./arrows/up_pog_champ.gif">
+			<img id="down0" src="./arrows/down_resident_sleeper.gif">
+			<img id="right0" src="./arrows/right_bible_thump.gif">
+		</div> <!-- ENDS #CONTROLS -->
+		<div class="stage-right"></div> <!-- ENDS .STAGE -->
+	</div>
+
+			<div class="music">
+        <form id="user-info", method="get">
+          <input type="text", name="user", placeholder="Username">
+          <input type="submit" value="Submit">
+        </form>
+        <h2 id="user"></h2>
+       <p id="track-list">
+        </p>
+      </div>
+
+              <footer id="sc-player">
+      </footer>
 </body>
 </html>
