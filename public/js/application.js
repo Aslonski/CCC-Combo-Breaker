@@ -13,18 +13,26 @@ $(document).ready(function() {
     });
   };
 
-  var data = { client_id: "137c00407d39811965ebfce7da0f1829" };
-  $.ajax({
-    method: 'get',
-    dataType: 'json',
-    url: 'https://api.soundcloud.com/users/droshik/tracks.json',
-    data: data
+ $("#user-info").on('submit', function(){
+    event.preventDefault();
+    var userName = $(this).serialize().split('=')[1]
+       // console.log(userName);
 
-  }).done(function(response){
-    response.forEach(function(track){
-    $('#track-list').append(`<p> <a href='http://soundcloud.com/droshik/${track.permalink}'>${track.title}</a></p>`);
+    var url = 'https://api.soundcloud.com/users/' + userName + '/tracks.json'
+    var data = { client_id: "137c00407d39811965ebfce7da0f1829" };
+    $.ajax({
+      method: 'get',
+      dataType: 'json',
+      url: url,
+      data: data
 
-  });
+    }).done(function(response){
+      $("#user-info")[0].reset();
+      response.forEach(function(track){
+
+      $('#track-list').append(`<p> <a href='http://soundcloud.com/${userName}/${track.permalink}'>${track.title}</a></p>`);
+       })
+    });
 
   $('#track-list').on('click', 'a', function(event){
     event.preventDefault();
